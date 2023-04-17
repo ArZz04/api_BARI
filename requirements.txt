@@ -1,5 +1,9 @@
+fastapi
+uvicorn
 python-jose
 passlib
 bcrypt
 pymongo
 python-multipart
+mangum
+starlette
