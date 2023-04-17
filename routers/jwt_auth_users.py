@@ -10,7 +10,7 @@ from db.client import db_client
 from db.models.user import User, UserDB
 
 ALGORITHM = "HS256"
-ACCESS_TOKEN_DURATION = 999999999
+ACCESS_TOKEN_DURATION = 20
 SECRET = "$2y$10$eDExHEG0GSWUvXhoxWovM./wsJS38BHu69l3qouX3zKNDGdqp7pve" #karlita 2 times
 
 router = APIRouter(responses={status.HTTP_404_NOT_FOUND: {"message": "No encontrado"}})
@@ -77,10 +77,10 @@ async def login(form: OAuth2PasswordRequestForm = Depends()):
             status_code=status.HTTP_400_BAD_REQUEST, detail="La contraseña no es correcta")
 
     access_token = {"sub":user.username, 
-                    "exp": datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_DURATION),
-                    "pass": "2516"}
+                    "exp": datetime.utcnow() + timedelta(seconds=ACCESS_TOKEN_DURATION),
+                    "pass": "0000"}
 
-    return {"access_token": jwt.encode(access_token, SECRET, algorithm=ALGORITHM), "token_type": "bearer"}
+    return {"access_token": jwt.encode(access_token, SECRET, algorithm=ALGORITHM), "role": user.role , "token_type": "bearer"}
 
 
 @router.get("/me")

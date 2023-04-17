@@ -6,7 +6,6 @@ class User(BaseModel):
     username: str
     full_name: str
     email: str
-    permission: str
     role: str
     disabled: bool
 
