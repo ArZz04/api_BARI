@@ -20,3 +20,7 @@ async def root():
 @app.get("/info")
 async def url():
     return {'INICIAR SERVIDOR' : "uvicorn main:app --reload"}
+
+#pip3 install -t dep -r requirements.txt    
+#(cd dep; zip ../lambda_artifact.zip -r .) 
+#zip -r lambda_artifact.zip -u main.py routers db
